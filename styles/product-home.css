@@ -1,0 +1,138 @@
+.product-sugges {
+  width: 1000px;
+  height: 100%;
+  background: #fff;
+  margin: 10px auto;
+}
+
+.giay-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.giay-wrap a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.giay-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.giay-flex {
+  position: relative;
+}
+.giay-flex a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.giay-flex span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.giay-flex:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.giay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.giay-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.more-pro {
+  margin: 0 auto;
+  color: blue;
+  text-decoration: none;
+  text-align: center;
+}
+.more-pro a {
+  text-decoration: none;
+}
+
+.giay-price {
+  display: flex;
+}
+.giay-price h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+}
+.giay-price h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(54, 52, 52);
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+.giay-hot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 1;
+}
+/* mobile */
+@media screen and (max-width: 768px) {
+  .product-sugges {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    margin: 10px auto;
+  }
+
+  .giay-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin: 10px 0;
+    padding: 0 10px;
+  }
+
+  .giay-price h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+  }
+  .giay-price h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 0.5rem;
+    font-weight: 500;
+    color: rgb(54, 52, 52);
+    text-decoration: line-through;
+    margin-left: 5px;
+  }
+}

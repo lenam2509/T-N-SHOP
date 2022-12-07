@@ -1,0 +1,75 @@
+.filter{
+    width: 1000px;
+    height: 100%;
+    margin: 10px auto;
+    background-color: #fff;
+}
+
+.filter ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.filter ul li {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid rgb(168, 161, 161);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.filter ul li:hover {
+    background-color: rgb(168, 161, 161);
+    color: #fff;
+}
+
+.toggle-filter{
+    display: none;
+
+}
+
+/* mobile */
+@media screen and (max-width: 480px) {
+    .filter{
+        width: 100%;
+        height: 100%;
+        margin: 10px auto;
+        background-color: #fff;
+    }
+    .filter ul{
+        list-style: none;
+        width: 100%;
+        display: none;
+    }
+    .filter ul li {
+        display: block;
+        padding: 10px;
+        margin: 10px 10px;
+        border: 1px solid rgb(168, 161, 161);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .toggle-filter{
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 10px auto;
+        background-color: #fff;
+    }
+    .toggle-filter p{
+        text-align: center;
+        padding: 10px;
+        margin: 10px 10px;
+        border: 1px solid rgb(168, 161, 161);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .toggle-filter svg{
+        float: right;
+        margin: 5px
+    }
+    .toggle-filter p:hover{
+        background-color: rgb(168, 161, 161);
+        color: #fff;
+    }
+}

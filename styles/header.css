@@ -1,0 +1,60 @@
+.header > nav {
+    background-color: #eb00bc;
+  }
+  .header > nav > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  .header > nav > ul > li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+  }
+  
+  .header > nav > ul > li a:hover {
+    background-color: #c61da4;
+    transition: all 0.3s;
+  }
+  
+  .header > nav > img {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .toggle {
+    display: none;
+  }
+  
+  /* user and cart icon */
+  .header > nav  > .user-cart {
+    display: none;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .header > nav > ul {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    .header .toggle {
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      padding: 10px 20px;
+      display: block;
+      text-align: left;
+      width: 10px;
+    }
+    /* user and cart icon */
+    .header > nav > .user-cart a {
+      display: inline-block;
+      justify-content: center;
+      padding-left: 20px;
+    }
+  }
+  

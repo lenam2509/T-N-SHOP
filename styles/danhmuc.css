@@ -1,0 +1,117 @@
+.cate-feature {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  margin: 0 auto;
+  width: 1000px;
+  height: 100%;
+}
+
+.cate-feature .name-box {
+  display: block;
+  overflow: hidden;
+  padding: 15px 22px;
+  font-size: 22px;
+  line-height: 36px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.cate-feature .box-cate {
+  display: block;
+  overflow: hidden;
+  padding: 0 40px 30px;
+}
+
+.cate-feature .box-cate aside {
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+.box-cate aside h3 {
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 50px 0;
+}
+
+.box-cate aside h3 .img-boxcate {
+  margin: auto;
+  display: block;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.box-cate aside h3 img {
+  display: block;
+  height: 56px;
+  margin: auto;
+  width: auto;
+  height: 60px;
+}
+
+.box-cate aside h3 a {
+  display: block;
+  overflow: hidden;
+  color: #333;
+  text-align: center;
+  width: 112px;
+  text-decoration: none;
+}
+.box-cate aside h3 span {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 5px;
+  font-size: 14px;
+}
+
+/* mobile */
+
+@media (max-width: 767px) {
+  .cate-feature {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .cate-feature .box-cate aside {
+    display: flex;
+    overflow: hidden;
+    padding: 0 10px;
+    /* width: 50px */
+  }
+  .box-cate aside h3 {
+    display: block;
+    overflow: hidden;
+    padding: 10px 0 10px;
+    width: 100%;
+  }
+  .box-cate aside h3 .img-boxcate {
+    margin: auto;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .box-cate aside h3 img {
+    display: block;
+    height: 56px;
+    margin: auto;
+    width: auto;
+    height: 60px;
+  }
+  .box-cate aside h3 a {
+    display: block;
+    overflow: hidden;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+  }
+  .box-cate aside h3 span {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 14px;
+  }
+}
