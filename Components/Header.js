@@ -47,8 +47,8 @@ const Header = () => {
                         <li><Link href="/products/all"><AiOutlineOrderedList />  Tất cả sản phẩm</Link></li>
                         <li><Link href="#"><FcSalesPerformance /> Săn sale</Link></li>
                         <li><Link href="#"> <AiFillPhone /> Liên hệ</Link></li>
-                        <li><Link href="#"><BsFillCartCheckFill /> Giỏ hàng</Link></li>
-                        <li><Link href="#"><BiLogIn/> Đăng nhập</Link></li>
+                        <li><Link href="/cart"><BsFillCartCheckFill /> Giỏ hàng</Link></li>
+                        <li><Link href="/login"><BiLogIn/> Đăng nhập</Link></li>
                     </ul>
 
                 </nav>
