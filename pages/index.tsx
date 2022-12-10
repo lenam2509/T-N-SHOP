@@ -128,7 +128,7 @@ export default function Home() {
             {giay.map((item, index) => {
               return (
                 <div className="giay-flex" key={index}>
-                  <Link href="/products/detail">
+                  <Link href="#">
                   <div className="giay-img">
                   <img src={"./Images/"+item.img} alt="" />
                   </div>
