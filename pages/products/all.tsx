@@ -89,9 +89,6 @@ const all = ({ data }: any) => {
                         <h4>{item.price.toLocaleString("vi-VN")} ₫</h4>
                       )}
                     </div>
-                    {/* <div className="giay-hot">
-                      <AiFillFire />HOT
-                    </div> */}
                   </Link>
                 </div>
               );

@@ -41,6 +41,35 @@ const detail = ({ data }: any) => {
     const img: any = document.querySelector(".detail-img img");
     img.src = data.images[index];
   };
+
+  const addcart = () => {
+    if (typeof document !== "undefined") {
+      const input: any = document.querySelector("#input-amount");
+      const amount = parseInt(input.value);
+      const cart = {
+        id: data.product[0].id,
+        name: data.product[0].name,
+        price: data.product[0].price,
+        amount: amount,
+        img: data.images[0],
+      };
+      const cartString = localStorage.getItem("cart");
+      if (cartString) {
+        const cartArray = JSON.parse(cartString);
+        const index = cartArray.findIndex((item: any) => item.id === cart.id);
+        if (index >= 0) {
+          cartArray[index].amount += cart.amount;
+        } else {
+          cartArray.push(cart);
+        }
+        localStorage.setItem("cart", JSON.stringify(cartArray));
+      } else {
+        const cartArray = [cart];
+        localStorage.setItem("cart", JSON.stringify(cartArray));
+      }
+    }
+  };
+
   const content = data.product[0].content;
   return (
     <>
