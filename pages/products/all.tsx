@@ -3,7 +3,6 @@ import React from "react";
 import $ from "jquery";
 import { AiFillFilter } from "react-icons/ai";
 import { AiFillFire } from "react-icons/ai";
-import axios from "axios";
 if (typeof window !== "undefined") {
   $(document).ready(function () {
     $(".toggle-filter").click(function () {
