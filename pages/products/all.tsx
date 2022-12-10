@@ -3,6 +3,7 @@ import React from "react";
 import $ from "jquery";
 import { AiFillFilter } from "react-icons/ai";
 import { AiFillFire } from "react-icons/ai";
+import axios from "axios";
 if (typeof window !== "undefined") {
   $(document).ready(function () {
     $(".toggle-filter").click(function () {
@@ -10,21 +11,21 @@ if (typeof window !== "undefined") {
     });
   });
 }
-const all = () => {
-  const giay = [
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  ];
+const all = ({ data }: any) => {
+  // const giay = [
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
+  // ];
 
   return (
     <>
@@ -68,16 +69,25 @@ const all = () => {
               <span>Kappa giày lười nam 381951W</span>
               <h3>200.000 ₫</h3>
             </div> */}
-            {giay.map((item, index) => {
+            {data.map((item: any, index: number) => {
               return (
                 <div className="giay-flex" key={index}>
-                  <Link href="/products/detail">
+                  <Link href={`/products/${item.slug}`}>
                     <div className="giay-img">
-                      <img src={"/Images/" + item.img} alt="" />
+                      <img src={item.image} alt="" />
                     </div>
                     <span>{item.name}</span>
                     <div className="giay-price">
-                      <h3>200.000 ₫</h3> <h4>250.000 ₫</h4>
+                      <h3>
+                        {(
+                          item.price -
+                          (item.price * item.discount) / 100
+                        ).toLocaleString("vi-VN")}{" "}
+                        ₫
+                      </h3>
+                      {item.discount > 0 && (
+                        <h4>{item.price.toLocaleString("vi-VN")} ₫</h4>
+                      )}
                     </div>
                     {/* <div className="giay-hot">
                       <AiFillFire />HOT
@@ -94,3 +104,11 @@ const all = () => {
 };
 
 export default all;
+
+export async function getServerSideProps() {
+  const res = await fetch("https://api.trungthanhweb.com/api/products");
+  const data = await res.json();
+  return {
+    props: { data },
+  };
+}
