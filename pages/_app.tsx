@@ -9,6 +9,7 @@ import '../styles/product-detail.css'
 import '../styles/product-all.css'
 import '../styles/login.css'
 import '../styles/register.css'
+import '../styles/contact.css'
 
 import type { AppProps } from 'next/app'
 import Layouts from '../Components/Layouts'

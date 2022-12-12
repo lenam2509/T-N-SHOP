@@ -1,6 +1,6 @@
 .register_full {
     width: 100%;
-    height: 500px;
+    height: 500px auto;
     background: #fff;
   }
   
@@ -128,13 +128,13 @@
     text-decoration: underline;
   }
   
-  #register_noAccount {
+  #register_logged {
     margin-left: 0.25rem;
     color: #eb00bc;
     text-decoration: none;
   }
   
-  #register_noAccount:hover {
+  #register_logged:hover {
     text-decoration: underline;
   }
   

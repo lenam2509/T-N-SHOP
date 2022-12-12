@@ -52,11 +52,6 @@ const register = () => {
                 đăng ký
               </button>
             </form>
-            {/* <div className="register_forgot">
-              <a href="/forgot" id="register_forgot">
-                Quên mật khẩu
-              </a>
-            </div> */}
             <br />
             <hr />
             <div id="or">hoặc</div>
@@ -83,8 +78,8 @@ const register = () => {
               <Link href="/" id="register_home">
                 T&N SHOP?
               </Link>
-              <Link href="/register" id="register_noAccount">
-                Đăng ký
+              <Link href="/register" id="register_logged">
+                Đăng nhập
               </Link>
             </div>
           </div>
