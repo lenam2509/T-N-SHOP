@@ -1,25 +1,28 @@
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 const detail = ({ data }: any) => {
-  // const products = [
-  //   // {
-  //   //   id: 1,
-  //   //   name: "Giày Nike Air Force 1 07 LV8",
-  //   //   price: 2000000,
-  //   //   oldprice: 2500000,
-  //   //   rating: 4,
-  //   //   img: "/Images/giay1.png",
-  //   //   imgs: [
-  //   //     "/Images/giay1.png",
-  //   //     "/Images/giay2.png",
-  //   //     "/Images/giay3.png",
-  //   //     "/Images/giay4.png",
-  //   //   ],
-  //   // },
-  // ];
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [cart, setCart] = useState<any>([]);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [amount, setAmount] = useState(1);
 
-  // console.log(data);
+  const addcart = (id: number) => {
+    const item = data.product.find((item: any) => item.id === id);
+    const check = cart.find((item: any) => item.id === id);
+    if (check) {
+      setCart(
+        cart.map((item: any) =>
+          item.id === id ? { ...check, amount: check.amount + 1 } : item
+        )
+      );
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      setCart([...cart, { ...item, amount: 1 }]);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  };
 
   const plus = () => {
     if (typeof document !== "undefined") {
@@ -42,35 +45,6 @@ const detail = ({ data }: any) => {
     img.src = data.images[index];
   };
 
-  const addcart = () => {
-    if (typeof document !== "undefined") {
-      const input: any = document.querySelector("#input-amount");
-      const amount = parseInt(input.value);
-      const cart = {
-        id: data.product[0].id,
-        name: data.product[0].name,
-        price: data.product[0].price,
-        amount: amount,
-        img: data.images[0],
-      };
-      const cartString = localStorage.getItem("cart");
-      if (cartString) {
-        const cartArray = JSON.parse(cartString);
-        const index = cartArray.findIndex((item: any) => item.id === cart.id);
-        if (index >= 0) {
-          cartArray[index].amount += cart.amount;
-        } else {
-          cartArray.push(cart);
-        }
-        localStorage.setItem("cart", JSON.stringify(cartArray));
-      } else {
-        const cartArray = [cart];
-        localStorage.setItem("cart", JSON.stringify(cartArray));
-      }
-    }
-  };
-
-  const content = data.product[0].content;
   return (
     <>
       <div className="detail-wraper">
@@ -132,19 +106,25 @@ const detail = ({ data }: any) => {
           <div className="detail-size">
             <div className="detail-size-title">Size:</div>
             <select name="" id="">
-              <option value="">S</option>
-              <option value="">M</option>
-              <option value="">L</option>
-              <option value="">XL</option>
+              {data.storage.map((size: any, index: number) => {
+                return (
+                  <option key={index} value={size.sizename}>
+                    {size.sizename}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="detail-color">
             <div className="detail-color-title">Màu:</div>
             <select name="" id="">
-              <option value="">Đen</option>
-              <option value="">Trắng</option>
-              <option value="">Xanh</option>
-              <option value="">Đỏ</option>
+              {data.storage.map((size: any, index: number) => {
+                return (
+                  <option key={index} value={size.color}>
+                    {size.color}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="detail-amount">
@@ -180,12 +160,58 @@ const detail = ({ data }: any) => {
             </div>
           </div>
           <div className="detail-button-addcart">
-            <button className="detail-button-addcart-button">
+            <button
+              className="detail-button-addcart-button"
+              onClick={() => {
+                addcart(data.product[0].idProd);
+              }}
+            >
               Thêm vào giỏ hàng
             </button>
           </div>
           <div className="detail-button-buy">
             <button className="detail-button-buy-button">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div className="product-sugges">
+        <div className="giay-wrap">
+          <h3 style={
+            {
+              textAlign: "center",
+              fontSize: "30px",
+              fontWeight: "bold",
+              color: "black",
+              marginBottom: "20px",
+            }
+          }>Sản phẩm cùng loại</h3>
+          <div className="giay-grid">
+            {data.relate.map((item: any, index: number) => {
+              return (
+                <div className="giay-flex" key={index}>
+                  <Link href="#">
+                    <div className="giay-img">
+                      <img src={item.image1} alt="" />
+                    </div>
+                    <span>{item.name}</span>
+                    <div className="giay-price">
+                      <h3>
+                        {" "}
+                        {(
+                          item.price -
+                          (item.price * item.discount) / 100
+                        ).toLocaleString("vi-VN")}{" "}
+                        ₫
+                      </h3>
+                      <h4>{item.price} ₫</h4>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+          <div className="more-pro">
+            <a href="#">Xem thêm sản phẩm</a>
           </div>
         </div>
       </div>
