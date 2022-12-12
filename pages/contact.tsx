@@ -1,3 +1,6 @@
+import Image from "next/image"
+import img from '../assets/img-01.webp'
+
 const contact = () => {
   return (
     <>
@@ -6,7 +9,7 @@ const contact = () => {
             <div className="contact_left">
                 <div className="contact_info">
                     <div className="contact_header">
-                        <h5 id="contact_title">LIÊN HỆ TRỰC TIẾP</h5>
+                        <h5 className="contact_title">LIÊN HỆ TRỰC TIẾP</h5>
                     </div>
                     <div className="contact_body">
                         <div className="contact_address">
@@ -27,11 +30,20 @@ const contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="contact_maps">
-                    
+                <div className="contact_image">
+                    <Image src={img} alt='' width={380} />
                 </div>
             </div>
-            <div className="contact_right"></div>
+            <div className="contact_right">
+                <h5 className="contact_title" style={{ marginLeft:'20px' }}>LIÊN HỆ VỚI CHÚNG TÔI</h5>
+                <form id="contact_formGroup">
+                    <input type="text" placeholder="Email*"/>
+                    <input type="text" placeholder="Họ và tên*"/>
+                    <input type="text" placeholder="Điện thoại*"/>
+                    <textarea placeholder="Nội dung liên hệ"></textarea>
+                    <button type="submit" id="contact_submit">Gửi</button>
+                </form>
+            </div>
         </div>
       </div>
     </>

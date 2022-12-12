@@ -78,7 +78,7 @@ const register = () => {
               <Link href="/" id="register_home">
                 T&N SHOP?
               </Link>
-              <Link href="/register" id="register_logged">
+              <Link href="/login" id="register_logged">
                 Đăng nhập
               </Link>
             </div>
