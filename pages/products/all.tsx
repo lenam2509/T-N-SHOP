@@ -11,21 +11,8 @@ if (typeof window !== "undefined") {
   });
 }
 const all = ({ data }: any) => {
-  // const giay = [
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  //   { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  // ];
-
+  const products = data
+  
   return (
     <>
       <div className="filter">
@@ -73,7 +60,7 @@ const all = ({ data }: any) => {
                 <div className="giay-flex" key={index}>
                   <Link href={`/products/${item.slug}`}>
                     <div className="giay-img">
-                      <img src={item.image} alt="" />
+                      <img src={item.image} alt={`${item.image}`} />
                     </div>
                     <span>{item.name}</span>
                     <div className="giay-price">
