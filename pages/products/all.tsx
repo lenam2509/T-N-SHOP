@@ -11,8 +11,8 @@ if (typeof window !== "undefined") {
   });
 }
 const all = ({ data }: any) => {
-  const products = data
-  
+  const products = data;
+
   return (
     <>
       <div className="filter">
@@ -48,37 +48,34 @@ const all = ({ data }: any) => {
       <div className="product-sugges">
         <div className="giay-wrap">
           <div className="giay-grid">
-            {/* <div className="giay-flex">
-              <div className="giay-img">
-                <img src="./Images/giay1.png" alt="" />
-              </div>
-              <span>Kappa giày lười nam 381951W</span>
-              <h3>200.000 ₫</h3>
-            </div> */}
-            {data.map((item: any, index: number) => {
-              return (
-                <div className="giay-flex" key={index}>
-                  <Link href={`/products/${item.slug}`}>
-                    <div className="giay-img">
-                      <img src={item.image} alt={`${item.image}`} />
-                    </div>
-                    <span>{item.name}</span>
-                    <div className="giay-price">
-                      <h3>
-                        {(
-                          item.price -
-                          (item.price * item.discount) / 100
-                        ).toLocaleString("vi-VN")}{" "}
-                        ₫
-                      </h3>
-                      {item.discount > 0 && (
-                        <h4>{item.price.toLocaleString("vi-VN")} ₫</h4>
-                      )}
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+            {data === undefined ? (
+              <div>Loading...</div>
+            ) : (
+              data.map((item: any, index: number) => {
+                return (
+                  <div className="giay-flex" key={index}>
+                    <Link href={`/products/${item.slug}`}>
+                      <div className="giay-img">
+                        <img src={item.image} alt={`${item.image}`} />
+                      </div>
+                      <span>{item.name}</span>
+                      <div className="giay-price">
+                        <h3>
+                          {(
+                            item.price -
+                            (item.price * item.discount) / 100
+                          ).toLocaleString("vi-VN")}{" "}
+                          ₫
+                        </h3>
+                        {item.discount > 0 && (
+                          <h4>{item.price.toLocaleString("vi-VN")} ₫</h4>
+                        )}
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

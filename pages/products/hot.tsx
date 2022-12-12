@@ -11,22 +11,8 @@ if (typeof window !== "undefined") {
     });
   });
 }
-const all = () => {
-  const giay = [
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-    { name: "Kappa giày lười nam 381951W", img: "giay1.png" },
-  ];
-
+const all = ({ data }: any) => {
+  const products = data;
   return (
     <>
       <div className="filter">
@@ -69,24 +55,38 @@ const all = () => {
               <span>Kappa giày lười nam 381951W</span>
               <h3>200.000 ₫</h3>
             </div> */}
-            {giay.map((item, index) => {
-              return (
-                <div className="giay-flex" key={index}>
-                  <Link href="/products/detail">
-                    <div className="giay-img">
-                      <img src={"/Images/" + item.img} alt="" />
-                    </div>
-                    <span>{item.name}</span>
-                    <div className="giay-price">
-                      <h3>200.000 ₫</h3> <h4>250.000 ₫</h4>
-                    </div>
-                    <div className="giay-hot">
-                      <AiFillFire />HOT
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+            {data === undefined ? (
+              <div>Loading...</div>
+            ) : (
+              products.map((item: any, index: number) => {
+                return (
+                  <div className="giay-flex" key={index}>
+                    <Link href={"/products/"+item.slug}>
+                      <div className="giay-img">
+                        <img src={item.image} alt={item.image} />
+                      </div>
+                      <span>{item.name}</span>
+                      <div className="giay-price">
+                        <h3>
+                          {(
+                            item.price -
+                            (item.price * item.discount) / 100
+                          ).toLocaleString("vi-VN")}{" "}
+                          ₫
+                        </h3>
+                        {item.discount > 0 && (
+                          <h4>{item.price.toLocaleString("vi-VN")} ₫</h4>
+                        )}
+                      </div>
+                      <div className="giay-hot">
+                        <AiFillFire />
+                        HOT
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>
@@ -95,3 +95,15 @@ const all = () => {
 };
 
 export default all;
+
+export async function getServerSideProps(context: any) {
+  const { slug } = context.query;
+  const res = await fetch(
+    `https://api.trungthanhweb.com/api/highlightprod`
+  );
+  const data = await res.json();
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
