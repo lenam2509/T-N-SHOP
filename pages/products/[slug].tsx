@@ -176,20 +176,22 @@ const detail = ({ data }: any) => {
       </div>
       <div className="product-sugges">
         <div className="giay-wrap">
-          <h3 style={
-            {
+          <h3
+            style={{
               textAlign: "center",
               fontSize: "30px",
               fontWeight: "bold",
               color: "black",
               marginBottom: "20px",
-            }
-          }>Sản phẩm cùng loại</h3>
+            }}
+          >
+            Sản phẩm cùng loại
+          </h3>
           <div className="giay-grid">
             {data.relate.map((item: any, index: number) => {
               return (
                 <div className="giay-flex" key={index}>
-                  <Link href="#">
+                  <Link href={"/products/" + item.slug}>
                     <div className="giay-img">
                       <img src={item.image1} alt="" />
                     </div>
