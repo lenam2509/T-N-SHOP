@@ -56,7 +56,23 @@ const all = ({ data }: any) => {
                   <div className="giay-flex" key={index}>
                     <Link href={`/products/${item.slug}`}>
                       <div className="giay-img">
-                        <img src={item.image} alt={`${item.image}`} />
+                        <img src={`https://api.trungthanhweb.com/images/${ item.image
+                          // cut string
+                            .split("/")
+                            .pop() // get last item
+                            .split(".")[0] // get first item
+                            .split()
+                            .join(" ")}.webp`} alt={
+                          item.image
+                          // cut string
+                            .split("/")
+                            .pop() // get last item
+                            .split(".")[0] // get first item
+                            .split("-")
+                            .join(" ")
+                            +'.webp'
+
+                        } />
                       </div>
                       <span>{item.name}</span>
                       <div className="giay-price">

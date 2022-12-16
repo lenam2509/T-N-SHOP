@@ -1,29 +1,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const detail = ({ data }: any) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [cart, setCart] = useState<any>([]);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [amount, setAmount] = useState(1);
-
-  const addcart = (id: number) => {
-    const item = data.product.find((item: any) => item.id === id);
-    const check = cart.find((item: any) => item.id === id);
-    if (check) {
-      setCart(
-        cart.map((item: any) =>
-          item.id === id ? { ...check, amount: check.amount + 1 } : item
-        )
-      );
-      localStorage.setItem("cart", JSON.stringify(cart));
-    } else {
-      setCart([...cart, { ...item, amount: 1 }]);
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  };
-
   const plus = () => {
     if (typeof document !== "undefined") {
       const input: any = document.querySelector("#input-amount");
@@ -45,9 +26,57 @@ const detail = ({ data }: any) => {
     img.src = data.images[index];
   };
 
+  const addToCart = (id: number) => {
+    if (typeof document !== "undefined") {
+      const input: any = document.querySelector("#input-amount");
+      const amount = input.value;
+      const cart = localStorage.getItem("cart");
+      if (cart === null) {
+        const cart: any[] = [
+          {
+            id: id,
+            name: data.product[0].name,
+            amount: amount,
+            price:
+              (data.product[0].price -
+                (data.product[0].price * data.product[0].discount) / 100) *
+              amount,
+            image: data.images[0],
+          },
+        ];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Thêm vào giỏ hàng thành công");
+      } else {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const index = cart.findIndex((item: any) => item.id === id);
+        if (index === -1) {
+          cart.push({
+            id: id,
+            name: data.product[0].name,
+            amount: amount,
+            price:
+              (data.product[0].price -
+                (data.product[0].price * data.product[0].discount) / 100) *
+              amount,
+            image: data.images[0],
+          });
+        } else {
+          cart[index].amount = parseInt(cart[index].amount) + parseInt(amount);
+          cart[index].price =
+            (data.product[0].price -
+              (data.product[0].price * data.product[0].discount) / 100) *
+            cart[index].amount;
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Thêm vào giỏ hàng thành công");
+      }
+    }
+  };
+
   return (
     <>
       <div className="detail-wraper">
+        <ToastContainer />
         {/* <div className="detail-left">
           <div className="detail-img">
             <img src="/Images/giay1.png" alt="" />
@@ -162,9 +191,7 @@ const detail = ({ data }: any) => {
           <div className="detail-button-addcart">
             <button
               className="detail-button-addcart-button"
-              onClick={() => {
-                addcart(data.product[0].idProd);
-              }}
+              onClick={() => addToCart(data.product[0].idProd)}
             >
               Thêm vào giỏ hàng
             </button>
