@@ -16,15 +16,15 @@ const Footer = () => {
                             <h4>Cửa hàng</h4>
                             <ul>
                                 <li><a href="#">thông tin</a></li>
-                                <li><a href="#">Dịch vụ của chúng tôi</a></li>
-                                <li><a href="#">chính sách bảo mật</a></li>
+                                <li><a href="/terms">Dịch vụ của chúng tôi</a></li>
+                                <li><a href="/policy">chính sách bảo mật</a></li>
                                 <li><a href="#">Chương trình liên kết</a></li>
                             </ul>
                         </div>
                         <div className="footer-col">
                             <h4>Sự trợ giúp</h4>
                             <ul>
-                                <li><a href="#">Câu hỏi</a></li>
+                                <li><a href="/insurance">Đổi hàng</a></li>
                                 <li><a href="#">Giao hàng</a></li>
                                 <li><a href="#">Trả hàng</a></li>
                                 <li><a href="#">Thông tin hóa đơn</a></li>
