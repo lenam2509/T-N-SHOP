@@ -12,6 +12,7 @@ import '../styles/register.css'
 import '../styles/contact.css'
 import '../styles/profile.css'
 import '../styles/policy.css'
+import '../styles/insurance.css'
 
 import type { AppProps } from 'next/app'
 import Layouts from '../Components/Layouts'
