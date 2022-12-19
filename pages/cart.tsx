@@ -53,6 +53,8 @@ const cart = () => {
                     <img src={item.image} alt="" />
                     <div className="content">
                       <h3>{item.name}</h3>
+                      <h4>Màu: {item.color}</h4>
+                      <h4>Kích cỡ: {item.size}</h4>
                       <h4>Giá: {item.price.toLocaleString("vi-VN")} vnđ</h4>
                       <p className="unit">
                         Số lượng:{" "}
@@ -107,9 +109,7 @@ const cart = () => {
             </p>
             {
               // user is not login
-              <a href="">
-               Đăng nhập để thanh toán
-              </a>
+              <a href="">Đăng nhập để thanh toán</a>
             }
           </div>
         </div>

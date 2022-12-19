@@ -29,7 +29,21 @@ const detail = ({ data }: any) => {
   const addToCart = (id: number) => {
     if (typeof document !== "undefined") {
       const input: any = document.querySelector("#input-amount");
-      const amount = input.value;
+      const amount: any = input.value;
+      // take value from option
+      const size: any = document.querySelector("#size");
+      const color: any = document.querySelector("#color");
+      const sizevalue: any = size.options[size.selectedIndex].value;
+      const colorvalue: any = color.options[color.selectedIndex].value;
+      if (sizevalue === "0") {
+        toast.error("Vui lòng chọn size");
+        return;
+      }
+      if (colorvalue === "0") {
+        toast.error("Vui lòng chọn màu");
+        return;
+      }
+
       const cart = localStorage.getItem("cart");
       if (cart === null) {
         const cart: any[] = [
@@ -37,6 +51,8 @@ const detail = ({ data }: any) => {
             id: id,
             name: data.product[0].name,
             amount: amount,
+            size: sizevalue,
+            color: colorvalue,
             price:
               (data.product[0].price -
                 (data.product[0].price * data.product[0].discount) / 100) *
@@ -54,6 +70,8 @@ const detail = ({ data }: any) => {
             id: id,
             name: data.product[0].name,
             amount: amount,
+            size: sizevalue,
+            color: colorvalue,
             price:
               (data.product[0].price -
                 (data.product[0].price * data.product[0].discount) / 100) *
@@ -134,10 +152,12 @@ const detail = ({ data }: any) => {
           </div>
           <div className="detail-size">
             <div className="detail-size-title">Size:</div>
-            <select name="" id="">
+            <select id="size">
               {data.storage.map((size: any, index: number) => {
                 return (
-                  <option key={index} value={size.sizename}>
+                  <option key={index}  value={
+                    data.storage[index].sizename
+                  }>
                     {size.sizename}
                   </option>
                 );
@@ -146,7 +166,7 @@ const detail = ({ data }: any) => {
           </div>
           <div className="detail-color">
             <div className="detail-color-title">Màu:</div>
-            <select name="" id="">
+            <select name="" id="color">
               {data.storage.map((size: any, index: number) => {
                 return (
                   <option key={index} value={size.color}>
